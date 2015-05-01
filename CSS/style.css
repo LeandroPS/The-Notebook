@@ -1,0 +1,158 @@
+@font-face{
+	font-family: "Museo 500";
+	src: url(../fonts/Museo-500.otf);
+}
+
+@font-face{
+	font-family: "Museo 300";
+	src: url(../Fonts/Museo-300.otf);
+}
+
+body{
+	margin: 0px;
+}
+
+nav{
+	height: 100%;
+	position: absolute;
+	background: green;
+	width: calc(100% - 50px);
+	left: calc(-100% - 50px);
+	transition: left 1s;
+	
+}
+
+	nav.expanded{
+		left: 0px;
+	}
+
+	nav ul{
+		
+	}
+
+div.evrthng{
+	
+}
+
+header{
+	background-color: red;
+	height: 50px;
+	width: 100%;
+}
+
+	header button{
+		background-color: transparent;
+		outline: none;
+		cursor: pointer;
+		width: 40px;
+		height: 40px;
+		margin: 5px;
+		border: 0px;
+	}
+
+		header button span{
+			
+		}
+
+	header h1{
+		float: right;
+		width: 50%;
+		margin: 0px 15px;
+		line-height: 50px;
+		text-align: right;
+		font-size: 16pt;
+		font-family: Open Sans, sans-serif;
+	}
+
+div.rest{
+	background-color: yellow;
+}
+
+	div.rest div.new-post{
+		background-color: green;
+		width: calc(100% - 10px);
+		min-height: 50px;
+		margin: 5px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: min-height 1s;
+		position: relative;
+	}
+
+		div.rest div.new-post textarea{
+			width: calc(100% - 17px);
+			height: calc(100% - 47px);
+			top: 5px;
+			left: 5px;
+			position: absolute;
+			background: transparent;
+			border: none;
+			outline: none;
+			resize: none;
+			font-family: Open Sans, sans-serif;
+		}
+
+		div.rest div.new-post button{
+			background: transparent;
+			border: none;
+			position: absolute;
+			bottom: 5px;
+		}
+
+			div.rest div.new-post button.scratch{
+				left: 5px;
+			}
+
+			div.rest div.new-post button.done{
+				background-color: #c0c0c0;
+				padding: 5px;
+				border-radius: 5px;
+				float: right;
+				right: 5px;
+			}
+
+		div.rest div.new-post.expanded{
+			
+			min-height: 200px;
+		}
+
+			div.rest div.new-post.expanded button{
+				
+			}
+
+		div.rest div.new-post span.ghost-span{
+			display: block;
+			text-align: center;
+			line-height: 50px;
+			opacity: 1;
+			transition: opacity 1s;
+		}
+
+			div.rest div.new-post.expanded span.ghost-span{
+				opacity: 0;
+			}
+
+div.rest section.collection{
+	background-color: grey;
+}
+
+	div.rest section.collection article{
+		background-color: red;
+		border: 1px solid;
+		margin: 5px;
+		border-radius: 5px;
+		padding: 15px;
+		float: left;
+		font-family: Open Sans, sans-serif;
+		font-weight: 300;
+	}
+
+		div.rest section.collection article.layout-half{
+			width: calc(50% - 42px);
+		}
+
+		div.rest section.collection article.layout-entire-w{
+			width: calc(100% - 42px);
+		}
+
+	
