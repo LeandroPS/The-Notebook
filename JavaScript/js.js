@@ -41,6 +41,7 @@ function createNotebook(n){
 
 
 $(function(){
+	updateStream();
 	/*
 	if (localStorage.getItem("Notebooks") === null) {
   		localStorage.setItem("Notebooks", []);
@@ -63,8 +64,10 @@ $(function(){
 	});
 	
 	$("div.new-page button.done").click(function(){
-		createPage($("div.new-page textarea").val());
-		$("div.new-page textarea").val("");
-		$("div.new-page").removeClass("expanded");
+		if($("div.new-page textarea").val()!=""){
+			createPage($("div.new-page textarea").val());
+			$("div.new-page textarea").val("");
+			$("div.new-page").removeClass("expanded");
+		}
 	});
 });

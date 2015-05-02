@@ -114,7 +114,13 @@ div.rest{
 
 			div.rest div.new-page button.scratch{
 				left: 5px;
+				color: #e0e0e0;
+				outline: none;
 			}
+
+				div.rest div.new-page button.scratch:active{
+					color: #eee;
+				}
 
 			div.rest div.new-page button.done{
 				background-color: #e0e0e0;
@@ -123,7 +129,12 @@ div.rest{
 				border-radius: 5px;
 				float: right;
 				right: 5px;
+				outline: none;
 			}
+
+				div.rest div.new-page button.done:active{
+					background-color: #eee;
+				}
 
 		div.rest div.new-page.expanded{
 			
