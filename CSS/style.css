@@ -8,14 +8,17 @@
 	src: url(../Fonts/Museo-300.otf);
 }
 
-body{
+body, html{
+	height: 100%;
+	width: 100%;
 	margin: 0px;
+	
 }
 
 nav{
 	height: 100%;
 	position: absolute;
-	background: green;
+	background: white;
 	width: calc(100% - 50px);
 	left: calc(-100% - 50px);
 	transition: left 1s;
@@ -31,13 +34,17 @@ nav{
 	}
 
 div.evrthng{
-	
+	background-color: #EEEEEE;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 
 header{
-	background-color: red;
+	background-color: transparent;
 	height: 50px;
 	width: 100%;
+	/*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
 }
 
 	header button{
@@ -65,21 +72,24 @@ header{
 	}
 
 div.rest{
-	background-color: yellow;
+	
 }
 
-	div.rest div.new-post{
-		background-color: green;
+	div.rest div.new-page{
+		background-color: #fff;
+		background-image: url(../Images/paper_texture.png);
 		width: calc(100% - 10px);
 		min-height: 50px;
-		margin: 5px;
+		margin: 15px 5px;
 		border-radius: 5px;
 		cursor: pointer;
 		transition: min-height 1s;
 		position: relative;
+		overflow-y: auto;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	}
 
-		div.rest div.new-post textarea{
+		div.rest div.new-page textarea{
 			width: calc(100% - 17px);
 			height: calc(100% - 47px);
 			top: 5px;
@@ -90,37 +100,42 @@ div.rest{
 			outline: none;
 			resize: none;
 			font-family: Open Sans, sans-serif;
+			opacity: 0;
 		}
 
-		div.rest div.new-post button{
+		div.rest div.new-page button{
 			background: transparent;
 			border: none;
 			position: absolute;
 			bottom: 5px;
+			opacity: 0;
+			transition: opacity 1s;
 		}
 
-			div.rest div.new-post button.scratch{
+			div.rest div.new-page button.scratch{
 				left: 5px;
 			}
 
-			div.rest div.new-post button.done{
-				background-color: #c0c0c0;
+			div.rest div.new-page button.done{
+				background-color: #e0e0e0;
+				font-weight: 400;
 				padding: 5px;
 				border-radius: 5px;
 				float: right;
 				right: 5px;
 			}
 
-		div.rest div.new-post.expanded{
+		div.rest div.new-page.expanded{
 			
 			min-height: 200px;
+			cursor: text;
 		}
 
-			div.rest div.new-post.expanded button{
-				
+			div.rest div.new-page.expanded button, div.rest div.new-page.expanded textarea{
+				opacity: 1;
 			}
 
-		div.rest div.new-post span.ghost-span{
+		div.rest div.new-page span.ghost-span{
 			display: block;
 			text-align: center;
 			line-height: 50px;
@@ -128,7 +143,7 @@ div.rest{
 			transition: opacity 1s;
 		}
 
-			div.rest div.new-post.expanded span.ghost-span{
+			div.rest div.new-page.expanded span.ghost-span{
 				opacity: 0;
 			}
 
@@ -137,14 +152,17 @@ div.rest section.collection{
 }
 
 	div.rest section.collection article{
-		background-color: red;
+		background-image: url(../Images/paper_texture.png);
+		background-color: white;
 		border: 1px solid;
+		border-color: #e0e0e0;
 		margin: 5px;
 		border-radius: 5px;
 		padding: 15px;
 		float: left;
 		font-family: Open Sans, sans-serif;
 		font-weight: 300;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	}
 
 		div.rest section.collection article.layout-half{
