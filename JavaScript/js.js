@@ -11,6 +11,11 @@ if (localStorage.getItem("pages") === null) {
 }else{
 	var pages = JSON.parse(localStorage.getItem("pages"));
 }
+
+function sortByDate(a, b) {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+}
+
 function newID(){
 	
 	return "3";
@@ -22,6 +27,7 @@ function getColor(){
 
 function updateStream(){
 	$("section.collection").html("");
+	pages.sort(sortByDate);
 	$.each(pages, function(index, page){
 		$("section.collection").append("<article>"+page.text+"</article>");	
 		
@@ -56,7 +62,7 @@ $(function(){
 	}
 	*/
 	$("button.menu").click(function(){
-		$("nav").toggleClass("expanded");
+		$("nav, div.cover").addClass("expanded");
 	});
 	
 	$("div.new-page").click(function(){
@@ -70,4 +76,9 @@ $(function(){
 			$("div.new-page").removeClass("expanded");
 		}
 	});
+	
+	$("div.cover").click(function(){
+		$("nav, div.cover").removeClass("expanded");
+	});
+	
 });

@@ -15,6 +15,23 @@ body, html{
 	
 }
 
+div.cover{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	background-color: #000;
+	z-index: 2;
+	display: none;
+	opacity: 0;
+	transition: opacity 1s;
+}
+
+	div.cover.expanded{
+		opacity: 0.5;
+		display: block;
+	}
+
 nav{
 	height: 100%;
 	position: absolute;
@@ -22,16 +39,62 @@ nav{
 	width: calc(100% - 50px);
 	left: calc(-100% - 50px);
 	transition: left 1s;
+	z-index: 3;
 	
 }
 
 	nav.expanded{
 		left: 0px;
 	}
+	
+	nav input.search{
+		width: calc(100% - 30px);
+		height: 30px;
+		outline: none;
+		margin: 10px;
+		border: 0px;
+		border-radius: 8px;
+		padding: 5px;
+		font-size: 16px;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	}
 
 	nav ul{
+		font-family: Open Sans, sans-serif;
+		font-size: 16px;
+		font-weight: 300;
+		padding: 0px;
+		margin: 0px;
+	}
+
+		nav ul li{
+			list-style: none;
+			padding-left: 15px;
+			margin-left: 1px;
+			background-color: red;
+		}
+
+	nav ul.presets{
 		
 	}
+
+		nav ul.presets li{
+
+		}
+
+	nav div.line{
+		width: calc(100% - 20px);
+		margin: 5px 10px;
+		border-bottom: 1px solid;
+	}
+
+	nav ul.notebooks{
+
+	}
+
+		nav ul.notebooks li{
+
+		}
 
 div.evrthng{
 	background-color: #EEEEEE;
