@@ -39,14 +39,13 @@ nav{
 	width: calc(100% - 50px);
 	left: calc(-100% - 50px);
 	transition: left 1s;
-	z-index: 3;
 	
 }
 
 	nav.expanded{
 		left: 0px;
 	}
-	
+
 	nav input.search{
 		width: calc(100% - 30px);
 		height: 30px;
@@ -70,9 +69,12 @@ nav{
 		nav ul li{
 			list-style: none;
 			padding-left: 15px;
-			margin-left: 1px;
+			margin-bottom: 1px;
 			background-color: red;
-		}
+		
+			height: 40px;
+			line-height: 40px;
+}
 
 	nav ul.presets{
 		
@@ -95,7 +97,6 @@ nav{
 		nav ul.notebooks li{
 
 		}
-
 div.evrthng{
 	background-color: #EEEEEE;
 	width: 100%;
