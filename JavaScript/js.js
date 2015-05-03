@@ -28,10 +28,14 @@ function getColor(){
 function updateStream(){
 	$("section.collection").html("");
 	pages.sort(sortByDate);
-	$.each(pages, function(index, page){
-		$("section.collection").append("<article>"+page.text+"</article>");	
+	if(){
 		
-	});
+	}else{
+		$.each(pages, function(index, page){
+			$("section.collection").append("<article>"+page.text+"</article>");	
+
+		});
+	}
 }
 
 
