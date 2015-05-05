@@ -274,9 +274,9 @@ div.rest{
 			line-height: 50px;
 			opacity: 1;
 			transition: opacity 1s;
-			  font-family: open sans, sans-serif;
-  font-weight: 400;
-  color: #C0C0C0;
+			font-family: open sans, sans-serif;
+			font-weight: 400;
+			color: #C0C0C0;
 		}
 
 			div.rest div.new-page.expanded span.ghost-span{
