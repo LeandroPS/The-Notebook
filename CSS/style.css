@@ -28,6 +28,7 @@ div.cover{
 }
 
 	div.cover.expanded{
+		transition: opacity 1s;
 		opacity: 0.5;
 		display: block;
 	}
@@ -61,6 +62,12 @@ nav{
 		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	}
 
+		nav section{
+			display: none;
+			overflow: hidden;
+			position: absolute;
+		}
+
 	nav ul{
 		font-family: Open Sans, sans-serif;
 		font-size: 16px;
@@ -84,6 +91,40 @@ nav{
 				text-align: center;
 				margin-right: 10px;
 			}
+
+			nav ul li input.create-notebook{
+				font-family: Open Sans, sans-serif;
+				font-size: 16px;
+				font-weight: 300;
+				
+				border: none;
+				outline: none;
+				
+			}
+
+	nav div.new-notebook{
+		padding-left: 15px;
+		margin-bottom: 1px;
+		height: 40px;
+		line-height: 40px;
+	}
+
+		nav div.new-notebook span{
+			width: 20px;
+			text-align: center;
+			margin-right: 10px;
+			transition: 0.5s;
+		}
+
+		nav div.new-notebook input{
+			font-family: Open Sans, sans-serif;
+			font-size: 16px;
+			font-weight: 300;
+			width: calc(100% - 40px);
+				
+			border: none;
+			outline: none;
+		}
 
 	nav ul.presets{
 		
@@ -233,6 +274,9 @@ div.rest{
 			line-height: 50px;
 			opacity: 1;
 			transition: opacity 1s;
+			  font-family: open sans, sans-serif;
+  font-weight: 400;
+  color: #C0C0C0;
 		}
 
 			div.rest div.new-page.expanded span.ghost-span{
@@ -243,7 +287,7 @@ div.rest section.collection{
 	background-color: grey;
 }
 
-	div.rest section.collection article{
+	div.rest section.collection article, nav section.search-results article{
 		background-image: url(../Images/paper_texture.png);
 		background-color: white;
 		border: 1px solid;
@@ -255,6 +299,9 @@ div.rest section.collection{
 		font-family: Open Sans, sans-serif;
 		font-weight: 300;
 		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+		width: auto;
+		min-width: 1px;
+		transition: 1s;
 	}
 
 		div.rest section.collection article.layout-half{
@@ -263,6 +310,7 @@ div.rest section.collection{
 
 		div.rest section.collection article.layout-entire-w{
 			width: calc(100% - 42px);
+			min-width: calc(100% - 42px);
 		}
 
 	

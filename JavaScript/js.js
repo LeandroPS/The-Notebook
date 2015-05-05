@@ -16,9 +16,14 @@ function sortByDate(a, b) {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
 }
 
-function newID(){
-	
-	return "3";
+function newID() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
 }
 
 function getColor(){
@@ -28,16 +33,25 @@ function getColor(){
 function updateStream(){
 	$("section.collection").html("");
 	pages.sort(sortByDate);
-	if(){
-		
-	}else{
-		$.each(pages, function(index, page){
-			$("section.collection").append("<article>"+page.text+"</article>");	
 
-		});
-	}
+	$.each(pages, function(index, page){
+		$("section.collection").append("<article>"+page.text+"</article>");	
+
+	});
 }
 
+function updateNotebookList(){
+	$("nav ul.notebooks").html("");
+	notebooks.sort(sortByDate);
+
+	$.each(notebooks, function(index, notebook){
+		var n = jQuery('<li><span class="fa fa-book"></span>'+notebook.title+'</li>');
+		n.css("color", notebook.color);
+		$("nav ul.notebooks").append(n);	
+
+	});
+	
+}
 
 function createPage(t){
 	pages.push({id: newID(), text: t, date: new Date()});
@@ -45,10 +59,21 @@ function createPage(t){
 	updateStream();
 }
 
-function createNotebook(n){
-	notebooks.push({name: n, color: getColor()});
+function createNotebook(n, c){
+	notebooks.push({id: newID(), title: n, date: new Date(), color: c});
 }
 
+function search(s){
+	var list = [];
+
+	for(i=0;i<pages.length;i++){
+		str = pages[i].text.toLowerCase();
+		if(str.search(s.toLowerCase())!=-1){
+			list.push(pages[i]);
+		}
+	}
+	return list;
+}
 
 $(function(){
 	updateStream();
@@ -69,8 +94,26 @@ $(function(){
 		$("nav, div.cover").addClass("expanded");
 	});
 	
+	$("input.search").keyup(function(){
+		if($(this).val()!=""){
+			$("nav ul, nav div.line, nav div.new-notebook").fadeOut();
+			$("nav section.search-results").fadeIn();
+			var result = search($(this).val());
+			$("nav section.search-results").empty();
+			for(var i = 0; i<=result.length; i++){
+				$("nav section.search-results").append("<article>"+result[i].text+"</article>");
+			}
+		}else{
+			$("nav section.search-results").empty();
+			$("nav ul, nav div.line, nav div.new-notebook").fadeIn();
+			$("nav section.search-results").fadeOut();
+		}
+		
+	})
+	
 	$("div.new-page").click(function(){
 		$(this).addClass("expanded");
+		$("div.new-page textarea").focus();
 	});
 	
 	$("div.new-page button.done").click(function(){
@@ -83,6 +126,31 @@ $(function(){
 	
 	$("div.cover").click(function(){
 		$("nav, div.cover").removeClass("expanded");
+	});
+	
+	$("nav div.new-notebook input").click(function(){
+		var color = getColor;
+		$("nav div.new-notebook, nav div.new-notebook input").css("color", color);
+		$("nav div.new-notebook input").attr("data-color", color);
+	});
+	
+	$("nav div.new-notebook input").keyup(function(e){
+		if(e.which==13){
+			createNotebook($(this).val(), $(this).attr("data-color"));
+		
+			$(this).blur();
+			updateNotebookList();
+		}
+	});
+	
+	$("nav div.new-notebook input").focusout(function(){
+		$("nav div.new-notebook, nav div.new-notebook input").css("color", "#000");
+		$("nav div.new-notebook input").attr("data-color", "");
+		$("nav div.new-notebook input").val("");
+	});
+	
+	$("div.rest section.collection article").click(function(){
+		$(this).addClass("layout-entire-w");
 	});
 	
 });
