@@ -124,6 +124,49 @@ $(function(){
 		}
 	});
 	
+	$("div.new-page button.rec").click(function(){
+		$("div.rest div.new-page div.sound-recorder").show();
+		setTimeout(function(){
+			$("div.rest div.new-page div.sound-recorder").toggleClass("expanded");
+		}, 50);
+	});
+	
+	$("div.new-page button.cam").click(function(){
+		$("div.rest div.new-page div.camera canvas.screen").attr('width', $("div.new-page").width());
+		$("div.rest div.new-page div.camera canvas.screen").attr('height', $("div.new-page").height());
+		$("div.rest div.new-page div.camera").show();
+		setTimeout(function(){
+			$("div.rest div.new-page div.camera").toggleClass("expanded");
+		}, 50);
+		
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+		
+		if(navigator.getUserMedia){
+			navigator.getUserMedia({video: true, audio: false}, handleVideo, videoError);
+			//navigator.getUserMedia("video", handleVideo, videoError);
+			console.log("I got here 1");
+			var vid = document.getElementById("screen");
+
+			function handleVideo(stream) {
+				// if found attach feed to video element
+				console.log("I got here");
+				vid.src = window.URL.createObjectURL(stream);
+				//vid.src = stream;
+			}
+
+			function videoError(e) {
+				console.log(e);
+			}
+		}else{
+			console.log("eeeeita :p");	
+		}
+		
+	});
+	
+	$("div.new-page div.extra button.cancel").click(function(){
+		$(this).parent().toggleClass("expanded");
+	});
+	
 	$("div.cover").click(function(){
 		$("nav, div.cover").removeClass("expanded");
 	});

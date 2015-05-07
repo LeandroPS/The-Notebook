@@ -41,6 +41,7 @@ nav{
 	left: calc(-100% - 50px);
 	transition: left 1s;
 	z-index: 3;
+	overflow-y: scroll;
 	
 }
 
@@ -138,6 +139,7 @@ nav{
 		width: calc(100% - 20px);
 		margin: 5px 10px;
 		border-bottom: 1px solid;
+		color: #eee;
 	}
 
 	nav ul.notebooks{
@@ -201,8 +203,11 @@ div.rest{
 		background-color: #fff;
 		background-image: url(../Images/paper_texture.png);
 		width: calc(100% - 10px);
+		max-width: 500px;
+		left: 50%;
+		transform: translateX(-50%);
 		min-height: 50px;
-		margin: 15px 5px;
+		margin: 15px 0px;
 		border-radius: 5px;
 		cursor: pointer;
 		transition: min-height 1s;
@@ -222,36 +227,45 @@ div.rest{
 			outline: none;
 			resize: none;
 			font-family: Open Sans, sans-serif;
+			font-size: 16px;
+			font-weight: 300;
 			opacity: 0;
 		}
 
-		div.rest div.new-page button{
-			background: transparent;
-			border: none;
+		div.rest div.new-page div.main-buttons{
 			position: absolute;
 			bottom: 5px;
-			opacity: 0;
-			transition: opacity 1s;
+			left: 5px;
 		}
 
-			div.rest div.new-page button.scratch{
-				left: 5px;
+			div.rest div.new-page div.main-buttons button{
+				background: transparent;
+				border: none;
+				position: relative;
+				opacity: 0;
+				transition: opacity 1s;
 				color: #e0e0e0;
 				outline: none;
 			}
 
-				div.rest div.new-page button.scratch:active{
+				div.rest div.new-page div.main-buttons button:active{
 					color: #eee;
 				}
 
 			div.rest div.new-page button.done{
 				background-color: #e0e0e0;
+				color: #BBB;
 				font-weight: 400;
 				padding: 5px;
 				border-radius: 5px;
 				float: right;
 				right: 5px;
+				bottom: 5px;
+				position: absolute;
 				outline: none;
+				
+				border: none;
+				opacity: 0;
 			}
 
 				div.rest div.new-page button.done:active{
@@ -264,7 +278,7 @@ div.rest{
 			cursor: text;
 		}
 
-			div.rest div.new-page.expanded button, div.rest div.new-page.expanded textarea{
+			div.rest div.new-page.expanded button, div.rest div.new-page.expanded div.main-buttons button, div.rest div.new-page.expanded textarea{
 				opacity: 1;
 			}
 
@@ -283,8 +297,114 @@ div.rest{
 				opacity: 0;
 			}
 
+	div.rest div.new-page div.extra{
+		position: absolute;
+		top: -100%;
+		background-color: white;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		
+		border-radius: 5px;
+		display: none;
+		
+		overflow: hidden;
+		
+		transition: top 0.5s;
+		
+		
+	}
+
+		div.rest div.new-page div.extra.expanded{
+			top: 0%;
+
+		}
+
+		div.rest div.new-page div.extra button.cancel{
+			position: absolute;
+			
+			border: none;
+			background-color: transparent;
+			
+			width: 45px;
+			height: 45px;
+			
+			top: 10px;
+			right: 10px;
+			
+			z-index: 2;
+		}
+
+		div.rest div.new-page div.extra button.record, div.rest div.new-page div.extra button.shoot{
+			width: 70px;
+			height: 70px;
+			border: none;
+			border-radius: 50%;
+			background-color: red;
+			top: 50%;
+			left: 50%;
+			transform: translateY(-50%) translateX(-50%);
+			position: absolute;
+			
+			outline: none;
+			
+			color: #fff;
+			
+			transition: transform 0.5s;
+		}
+			
+			div.rest div.new-page div.extra button.record:active{
+				
+				transform: translateY(-50%) translateX(-50%) scale(1.3);
+			}
+
+		div.rest div.new-page div.extra button.shoot{
+			border: 1px solid;
+			border-color: grey;
+			background-color: transparent;
+			color: #000;
+			z-index: 2;
+		}
+
+		div.rest div.new-page div.extra progress{
+			width: 100%;
+			height: 3px;
+			position: absolute;
+			
+			bottom: 10px;
+			left: 0px;
+			
+			-webkit-appearance: none;
+   			appearance: none;
+		}
+
+		div.rest div.new-page div.extra canvas.screen, div.rest div.new-page div.extra video.screen{
+			background: red;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			z-index: 1;
+			
+			border-radius: 5px;
+		}
+
+		div.rest div.new-page div.extra video.screen{
+			background-color: blue;
+			
+			width: 100%;
+			
+			position: absolute;
+			
+			top: 50%;
+			transform: translateY(-50%);
+			
+			z-index: 1;
+		}
+
 div.rest section.collection{
-	background-color: grey;
+	display: flex;
+  	flex-wrap: wrap;
+  	justify-content: space-between;
 }
 
 	div.rest section.collection article, nav section.search-results article{

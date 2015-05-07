@@ -43,8 +43,30 @@
 				<div class="new-page unexpanded">
 					<span class="ghost-span">Click to add a page</span>
 					<textarea class="text"></textarea>
-					<button class="scratch"><span class="fa fa-pencil fa-2x"></span></button>
-					<button class="done">Done</button>
+					<div class="main-buttons">
+						<button class="scratch main"><span class="fa fa-pencil fa-2x"></span></button>
+						<button class="rec main"><span class="fa fa-microphone fa-2x"></span></button>
+						<button class="cam main"><span class="fa fa-camera fa-2x"></span></button>
+					</div>
+					<button class="done main">Done</button>
+					
+					<div class="canvas extra">
+						
+					</div>
+					
+					<div class="sound-recorder extra">
+						<button class="cancel"><span class="fa fa-times fa-3x"></span></button>
+						<button class="record"><span class="fa fa-microphone fa-3x"></span></button>
+						<progress></progress>
+					</div>
+					
+					<div class="camera extra">
+						<button class="cancel"><span class="fa fa-times fa-3x"></span></button>
+						<button class="shoot"><span class="fa fa-camera fa-2x"></span></button>
+						
+						<canvas class="screen"></canvas>
+						<video id="screen" class="screen" autoplay></video>
+					</div>
 				</div>
 				<section class="collection">
 					
