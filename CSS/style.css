@@ -50,6 +50,7 @@ nav{
 	}
 
 	nav input.search{
+		-webkit-appearence: none;
 		width: calc(100% - 30px);
 		height: 30px;
 		outline: none;
@@ -121,6 +122,7 @@ nav{
 			font-family: Open Sans, sans-serif;
 			font-size: 16px;
 			font-weight: 300;
+			width: 300px;
 			width: calc(100% - 40px);
 				
 			border: none;
@@ -206,6 +208,7 @@ div.rest{
 		max-width: 500px;
 		left: 50%;
 		transform: translateX(-50%);
+		-webkit-transform: translateX(-50%);
 		min-height: 50px;
 		margin: 15px 0px;
 		border-radius: 5px;
@@ -252,7 +255,7 @@ div.rest{
 					color: #eee;
 				}
 
-			div.rest div.new-page button.done{
+			div.rest div.new-page button.done, div.rest div.new-page button.add{
 				background-color: #e0e0e0;
 				color: #BBB;
 				font-weight: 400;
@@ -344,18 +347,21 @@ div.rest{
 			top: 50%;
 			left: 50%;
 			transform: translateY(-50%) translateX(-50%);
+			-webkit-transform: translateY(-50%) translateX(-50%);
 			position: absolute;
 			
 			outline: none;
 			
 			color: #fff;
 			
-			transition: transform 0.5s;
+			transition: transform 0.5s linear;
+			transition: -webkit-transform 0.5s linear;
 		}
 			
 			div.rest div.new-page div.extra button.record:active{
 				
 				transform: translateY(-50%) translateX(-50%) scale(1.3);
+				-webkit-transform: translateY(-50%) translateX(-50%) scale(1.3);
 			}
 
 		div.rest div.new-page div.extra button.shoot{
@@ -397,8 +403,27 @@ div.rest{
 			
 			top: 50%;
 			transform: translateY(-50%);
+			-webkit-transform: translateY(-50%);
 			
 			z-index: 1;
+		}
+
+		div.rest div.new-page div.extra canvas.canvas{
+			background-color: red;
+			width: 100%;
+			height: 100%;
+		}
+
+		div.rest div.new-page div.extra div.pallete{
+			
+		}
+
+			div.rest div.new-page div.extra div.pallete button{
+				
+			}
+
+		div.rest div.new-page div.extra button.add{
+			opacity: 1;
 		}
 
 div.rest section.collection{

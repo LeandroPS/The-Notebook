@@ -75,6 +75,34 @@ function search(s){
 	return list;
 }
 
+
+function touchHandler(event)
+{
+    var touches = event.changedTouches,
+        first = touches[0],
+        type = "";
+        switch(event.type)
+    	{
+        	case "touchstart": type = "mousedown"; break;
+        	case "touchmove":  type="mousemove"; break;        
+        	case "touchend":   type="mouseup"; break;
+        	default: return;
+    	}
+
+             //initMouseEvent(type, canBubble, cancelable, view, clickCount, 
+    //           screenX, screenY, clientX, clientY, ctrlKey, 
+    //           altKey, shiftKey, metaKey, button, relatedTarget);
+
+    var simulatedEvent = document.createEvent("MouseEvent");
+    simulatedEvent.initMouseEvent(type, true, true, window, 1, 
+                              first.screenX, first.screenY, 
+                              first.clientX, first.clientY, false, 
+                              false, false, false, 0/*left*/, null);
+
+                                                                                 first.target.dispatchEvent(simulatedEvent);
+    event.preventDefault();
+}
+
 $(function(){
 	updateStream();
 	/*
@@ -131,6 +159,25 @@ $(function(){
 		}, 50);
 	});
 	
+	$("div.new-page button.scratch").click(function(){
+		$("div.rest div.new-page div.scribble").show();
+		setTimeout(function(){
+			$("div.rest div.new-page div.scribble").toggleClass("expanded");
+		}, 50);
+		
+		var can = $("div.rest div.new-page div.scribble canvas.canvas");
+		
+		can.attr("width", can.parent().width());
+        can.attr("height", can.parent().height());
+	});
+	
+	$("div.new-page button.notebook").click(function(){
+		$("div.rest div.new-page div.notebook-list").show();
+		setTimeout(function(){
+			$("div.rest div.new-page div.notebook-list").toggleClass("expanded");
+		}, 50);
+	});
+	
 	$("div.new-page button.cam").click(function(){
 		$("div.rest div.new-page div.camera canvas.screen").attr('width', $("div.new-page").width());
 		$("div.rest div.new-page div.camera canvas.screen").attr('height', $("div.new-page").height());
@@ -162,6 +209,42 @@ $(function(){
 		}
 		
 	});
+	
+	$("div.new-page div.extra canvas.canvas").each(function(index){
+
+        this.addEventListener("touchstart", touchHandler, true);
+        this.addEventListener("touchmove", touchHandler, true);
+        this.addEventListener("touchend", touchHandler, true);
+        this.addEventListener("touchcancel", touchHandler, true); 
+
+        ctx = this.getContext("2d");
+        ctx.lineCap = 'round';
+        ctx.lineWidth = 2;
+		
+		var desenhando = false;
+		var cor = "#000";
+
+
+        this.onmousedown = function (evt) {	
+            ctx.moveTo(evt.clientX - $(this).offset().left, evt.clientY - $(this).offset().top);
+            ctx.beginPath();
+            ctx.strokeStyle = cor;
+
+            desenhando = true;
+        }
+
+        this.onmouseup = function () {
+            desenhando = false;               
+        }
+
+        this.onmousemove = function (evt) {
+            if (desenhando) {
+                ctx.lineTo(evt.clientX - $(this).offset().left, evt.clientY - $(this).offset().top);
+                ctx.stroke();
+            }
+        }
+
+    });
 	
 	$("div.new-page div.extra button.cancel").click(function(){
 		$(this).parent().toggleClass("expanded");
