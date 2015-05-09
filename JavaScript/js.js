@@ -1,3 +1,5 @@
+var color = "#000";
+
 if (localStorage.getItem("notebooks") === null) {
 	localStorage.setItem("notebooks", "[]");
 	var notebooks = [];
@@ -35,7 +37,26 @@ function updateStream(){
 	pages.sort(sortByDate);
 
 	$.each(pages, function(index, page){
-		$("section.collection").append("<article>"+page.text+"</article>");	
+		var p = jQuery("<article></article>");
+		var span = jQuery("<span></span>");
+		span.addClass("text");
+		span.append(page.text);
+		p.append(span);
+		console.log("ate ");
+		if(page.scratches!=null){
+			console.log("ate´aqui");
+			for(var i=0; i<page.scratches.length; i++){
+				var s =jQuery("<img/>");
+				s.attr("src", page.scratches[i]);
+				s.addClass("scratch");
+				p.append(s);
+			}
+			
+		}
+		
+		
+		$("section.collection").append(p);
+	
 
 	});
 }
@@ -53,8 +74,8 @@ function updateNotebookList(){
 	
 }
 
-function createPage(t){
-	pages.push({id: newID(), text: t, date: new Date()});
+function createPage(t, s, a, p, n){
+	pages.push({id: newID(), text: t, date: new Date(), scratches: s, audios: a, pictures: p, notebook: n });
 	localStorage.setItem("pages", JSON.stringify(pages));
 	updateStream();
 }
@@ -146,10 +167,25 @@ $(function(){
 	
 	$("div.new-page button.done").click(function(){
 		if($("div.new-page textarea").val()!=""){
-			createPage($("div.new-page textarea").val());
-			$("div.new-page textarea").val("");
+			
+			scratches = [];
+			$("div.new-page img.scratch").each(function(){
+				scratches.push($(this).attr("src"));
+			});
+			createPage($("div.new-page textarea").val(), scratches, null, null, null);
 			$("div.new-page").removeClass("expanded");
+			$("div.new-page textarea").val("");
 		}
+	});
+	
+	$("div.new-page div.scribble button.add").click(function(){
+		alert("heeey");
+		var urld = $("div.new-page div.scribble canvas.canvas").get(0).toDataURL();
+		var img = jQuery("<img/>");
+		img.attr("src", urld);
+		img.addClass("scratch");
+		$("div.new-page").append(img);
+		$("div.new-page div.scribble").removeClass("expanded");
 	});
 	
 	$("div.new-page button.rec").click(function(){
@@ -222,13 +258,12 @@ $(function(){
         ctx.lineWidth = 2;
 		
 		var desenhando = false;
-		var cor = "#000";
 
 
         this.onmousedown = function (evt) {	
             ctx.moveTo(evt.clientX - $(this).offset().left, evt.clientY - $(this).offset().top);
             ctx.beginPath();
-            ctx.strokeStyle = cor;
+            ctx.strokeStyle = color;
 
             desenhando = true;
         }
